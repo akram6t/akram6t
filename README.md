@@ -19,3 +19,11 @@ Best Portfolio Site
 
 https://rajaprerak.github.io/
 https://github.com/codewithsadee/portfolio
+
+https://choubari.github.io/Glassmorphism-Portfolio/index.html
+
+https://amreshsinha.github.io/glassFolio/
+
+https://dash.mauz.io/
+
+https://gabrieldejesus.github.io/glassmorphism/
