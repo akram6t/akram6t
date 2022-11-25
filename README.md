@@ -28,3 +28,7 @@ https://amreshsinha.github.io/glassFolio/
 https://dash.mauz.io/
 
 https://gabrieldejesus.github.io/glassmorphism/
+
+calculator
+
+https://oshadhashiro404.github.io/Glassmorphism-Calculator/
