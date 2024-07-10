@@ -2,4 +2,4 @@
 
 ## My name is Akram Khan
 
-- ***Skills***: Javascript, Reactjs, React Native, Nextjs, Docker, Git
+- ***Skills***: Javascript, Reactjs, React Native, Nextjs, mongodb, Docker, Git
