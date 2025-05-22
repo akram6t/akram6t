@@ -124,8 +124,8 @@ const BinaryTreeVisualization = () => {
 const Hero = () => {
   const commands = [
     'A Javascript developer',
-    'A react developer',
-    'a backend developer',
+    'A React developer',
+    'A backend developer',
   ]
   const [currentCommand, setCurrentCommand] = useState(0)
 
@@ -143,15 +143,15 @@ const Hero = () => {
       <div className="glow-effect glow-blue w-96 h-96 bottom-1/4 right-1/4" />
       
       <div className="container mx-auto px-4 md:px-8 py-16 md:py-32">
-        <div className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex flex-col items-center text-center">
           <motion.div 
-            className="w-full md:w-3/5 mb-12 md:mb-0"
+            className="w-full mb-12"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="terminal-card mb-8 bg-opacity-10 backdrop-blur-lg p-4 rounded-lg md:max-w-lg"
+              className="terminal-card mb-8 bg-opacity-10 backdrop-blur-lg p-4 rounded-lg mx-auto max-w-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -163,8 +163,8 @@ const Hero = () => {
                 <div className="text-xs text-gray-400 ml-2">terminal</div>
               </div>
               <div className="command-line">
-                <span className="command-prompt">$</span>
-                <div className="flex-1 overflow-hidden">
+                <span className="command-prompt mt-2">$</span>
+                <div className="overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentCommand}
@@ -201,7 +201,7 @@ const Hero = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-gray-300 text-lg mb-8 max-w-xl"
+              className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -212,22 +212,23 @@ const Hero = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
               <motion.a 
-                href="#projects" 
+                href="/resume.pdf" 
+                target='_blank'
                 className="px-6 py-3 bg-terminal-green text-gray-900 rounded-lg font-medium flex items-center gap-2 hover:bg-terminal-blue transition-all duration-300 font-mono"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Terminal size={18} /> view_projects.js
+                <Terminal size={18} /> Resume.pdf
               </motion.a>
               <motion.a 
                 href="#contact" 
-                className="px-6 py-3 border border-terminal-green text-terminal-green rounded-lg font-medium hover:bg-terminal-green hover:bg-opacity-10 transition-all duration-300 font-mono"
+                className="px-6 py-3 border border-terminal-green text-terminal-green rounded-lg font-medium hover:bg-opacity-10 transition-all duration-300 font-mono"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -235,37 +236,27 @@ const Hero = () => {
               </motion.a>
             </motion.div>
           </motion.div>
-          
-          <motion.div 
-            className="w-full md:w-2/5 flex justify-center"
+
+          {/* Replaced profile image with binary tree visualization */}
+          {/* <motion.div 
+            className="w-full max-w-2xl mt-12"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-terminal-green bg-opacity-10 rounded-full filter blur-3xl" />
-              <div className="absolute inset-0 border border-terminal-green border-opacity-20 rounded-full animate-pulse" />
-              <motion.div 
-                className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-2 border-terminal-green relative z-10"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 10 }}
-              >
-                <div className="matrix-grid">
-                  {Array.from({ length: 12 * 6 }).map((_, i) => (
-                    <div key={i} className="matrix-cell" />
-                  ))}
-                </div>
-                <img 
-                  src="https://shorturl.at/bnqge" 
-                  alt="Developer Portrait" 
-                  className="w-full h-full object-cover mix-blend-lighten opacity-90" 
-                />
-              </motion.div>
+            <div className="terminal-card p-4">
+              <div className="terminal-card-header">
+                <div className="terminal-btn terminal-btn-red" />
+                <div className="terminal-btn terminal-btn-yellow" />
+                <div className="terminal-btn terminal-btn-green" />
+                <div className="text-xs text-gray-400 ml-2">tech_tree.js</div>
+              </div>
+              <BinaryTreeVisualization />
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
         
-        <motion.div 
+        {/* <motion.div 
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -278,8 +269,8 @@ const Hero = () => {
             transition={{ repeat: Infinity, duration: 1.5 }}
           >
             <div className="w-1 h-3 bg-terminal-green rounded-full"></div>
-          </motion.div>
-        </motion.div>
+          </motion.div> */}
+        {/* </motion.div> */}
       </div>
     </section>
   )
