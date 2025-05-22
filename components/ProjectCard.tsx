@@ -1,14 +1,19 @@
 'use client'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Maximize2, X } from 'lucide-react'
 import type { Project } from '@/types'
+import { getTimeAgo } from '@/utils/getTimeAgo'
 
 interface SliderProps {
   images: string[]
+  primaryColor: string
+  onImageClick: (index: number) => void
 }
 
-const Slider = ({ images }: SliderProps) => {
+const colors = ["terminal-blue", "terminal-purple", "terminal-green"];
+
+const Slider = ({ images, primaryColor, onImageClick }: SliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const goToPrevious = () => {
@@ -39,38 +44,62 @@ const Slider = ({ images }: SliderProps) => {
         className="flex h-full transition-transform duration-500 ease-in-out pt-10"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
-        {images.map((image, index) => (
-          <div key={index} className="w-full flex-shrink-0 relative">
-            <div className="absolute inset-0 bg-gray-900 bg-opacity-30 backdrop-blur-[1px]"></div>
-            <img
-              src={image || "/placeholder.svg"}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover opacity-80"
-            />
-            <div className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-px opacity-10 pointer-events-none">
-              {Array.from({ length: 12 * 6 }).map((_, i) => (
-                <div key={i} className="bg-gray-300"></div>
-              ))}
+        {images.map((image, index) => {
+          const isVideo = image.endsWith('.mp4') || image.endsWith('.webm') || image.endsWith('.ogg');
+
+          return (
+            <div key={index} className="w-full flex-shrink-0 relative">
+              {
+                isVideo ? (
+                  <video
+                    src={image}
+                    className="w-full h-full object-cover opacity-80"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={image || '/placeholder.png'}
+                    alt={`Slide ${index + 1}`}
+                    className="w-full h-full object-cover opacity-80"
+                  />
+                )
+              }
+              {/* View button */}
+              <button
+                onClick={() => onImageClick(index)}
+                className={`absolute top-12 right-2 bg-gray-900 bg-opacity-70 text-${primaryColor} p-1.5 rounded hover:bg-opacity-90 transition z-10`}
+                aria-label="View full image"
+              >
+                <Maximize2 size={16} />
+              </button>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Navigation arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-70 text-terminal-green p-2 rounded-full hover:bg-opacity-90 transition z-10"
+        className={`absolute left-2 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-70 text-${primaryColor} p-2 rounded-full hover:bg-opacity-90 transition z-10`}
         aria-label="Previous slide"
       >
         <ChevronLeft size={20} />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-70 text-terminal-green p-2 rounded-full hover:bg-opacity-90 transition z-10"
+        className={`absolute right-2 top-1/2 -translate-y-1/2 bg-gray-900 bg-opacity-70 text-${primaryColor} p-2 rounded-full hover:bg-opacity-90 transition z-10`}
         aria-label="Next slide"
       >
         <ChevronRight size={20} />
       </button>
+
+      {/* Overlay for the entire slider */}
+      <span className='hr-only bg-terminal-green'></span>
+      <span className='hr-only bg-terminal-blue'></span>
+      <span className='hr-only bg-terminal-purple'></span>
 
       {/* Slide indicators */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
@@ -78,9 +107,8 @@ const Slider = ({ images }: SliderProps) => {
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2 rounded-full transition-all ${
-              index === currentIndex ? "bg-terminal-green w-4" : "bg-gray-500 w-2"
-            }`}
+            className={`h-2 rounded-full transition-all ${index === currentIndex ? `bg-${primaryColor} w-4` : "bg-gray-500 w-2"
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
@@ -95,63 +123,129 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
-  // Generate a random color for the project
-  const colors = ["terminal-green", "terminal-blue", "terminal-purple", "terminal-red"]
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const projectColor = colors[index % colors.length]
 
+  const openImageModal = (image: string) => {
+    setSelectedImage(image)
+  }
+
+  const closeImageModal = () => {
+    setSelectedImage(null)
+  }
+
   return (
-    <motion.div
-      className="terminal-card overflow-hidden rounded-xl relative"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -5 }}
-    >
-      <Slider images={project.images} />
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className={`text-xl font-semibold font-mono text-${projectColor}`}>
-            <span className="text-gray-400">./</span>
-            {project.title}
-          </h3>
-        </div>
-        <p className="text-gray-300 mb-4 font-mono text-sm">{project.description}</p>
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech, techIndex) => (
-            <motion.span
-              key={techIndex}
-              className={`text-xs font-mono bg-gray-800 text-${projectColor} px-3 py-1 rounded-md border border-${projectColor} border-opacity-30`}
-              whileHover={{ y: -2, boxShadow: `0 0 8px var(--${projectColor.replace("terminal-", "terminal-")})` }}
+    <>
+      <motion.div
+        className="terminal-card overflow-hidden rounded-xl relative"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        whileHover={{ y: -5 }}
+      >
+        <Slider primaryColor={projectColor} images={project.images} onImageClick={(index) => openImageModal(project.images[index])} />
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-4">
+            <h3 className={`text-xl font-semibold font-mono text-${projectColor}`}>
+            <span className={`text-${projectColor}`}>$ </span>
+              {project.title}
+            </h3>
+            <span className="text-xs text-gray-400 font-mono">
+              {getTimeAgo(project.createdAt)}
+            </span>
+          </div>
+          <p className="text-gray-300 mb-4 font-mono text-sm">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.technologies.map((tech, techIndex) => (
+              <motion.span
+                key={techIndex}
+                className={`text-xs font-mono bg-gray-800 text-${projectColor} px-3 py-1 rounded-md border border-${projectColor} border-opacity-30`}
+                whileHover={{ y: -2, boxShadow: `0 0 8px var(--${projectColor.replace("terminal-", "terminal-")})` }}
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+
+          <div className="flex space-x-4">
+            {
+              project.live && (
+                <motion.a
+                  target="_blank"
+                  href={project.live}
+                  className={`flex items-center text-${projectColor} hover:text-white transition-colors px-3 py-1 rounded-md border border-${projectColor} border-opacity-50 text-sm font-mono`}
+                  whileHover={{ scale: 1.05, boxShadow: `0 0 10px var(--${projectColor.replace("terminal-", "terminal-")})` }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ExternalLink size={14} className="mr-2" /> demo
+                </motion.a>
+              )
+            }
+            <motion.a
+              href={project.github}
+              target="_blank"
+              className={`flex items-center text-${projectColor} hover:text-white transition-colors px-3 py-1 rounded-md border border-${projectColor} border-opacity-50 text-sm font-mono`}
+              whileHover={{ scale: 1.05, boxShadow: `0 0 10px var(--${projectColor.replace("terminal-", "terminal-")})` }}
+              whileTap={{ scale: 0.95 }}
             >
-              {tech}
-            </motion.span>
-          ))}
+              <Github size={14} className="mr-2" /> code
+            </motion.a>
+          </div>
         </div>
-        <div className="flex space-x-4">
-          <motion.a
-            href={project.live}
-            className={`flex items-center text-${projectColor} hover:text-white transition-colors px-3 py-1 rounded-md border border-${projectColor} border-opacity-50 text-sm font-mono`}
-            whileHover={{ scale: 1.05, boxShadow: `0 0 10px var(--${projectColor.replace("terminal-", "terminal-")})` }}
-            whileTap={{ scale: 0.95 }}
+        {/* Decorative glow elements */}
+        <div className={`absolute -bottom-10 -right-10 w-20 h-20 rounded-full bg-${projectColor} opacity-10 blur-xl`} />
+        <div className={`absolute -top-10 -left-10 w-20 h-20 rounded-full bg-${projectColor} opacity-10 blur-xl`} />
+      </motion.div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-90 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeImageModal}
           >
-            <ExternalLink size={14} className="mr-2" /> demo
-          </motion.a>
-          <motion.a
-            href={project.github}
-            className={`flex items-center text-${projectColor} hover:text-white transition-colors px-3 py-1 rounded-md border border-${projectColor} border-opacity-50 text-sm font-mono`}
-            whileHover={{ scale: 1.05, boxShadow: `0 0 10px var(--${projectColor.replace("terminal-", "terminal-")})` }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Github size={14} className="mr-2" /> code
-          </motion.a>
-        </div>
-      </div>
-      {/* Decorative glow elements */}
-      <div className={`absolute -bottom-10 -right-10 w-20 h-20 rounded-full bg-${projectColor} opacity-10 blur-xl`} />
-      <div className={`absolute -top-10 -left-10 w-20 h-20 rounded-full bg-${projectColor} opacity-10 blur-xl`} />
-    </motion.div>
+            <motion.div
+              className="relative max-w-4xl w-full max-h-[90vh]"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeImageModal}
+                className="absolute -top-10 right-0 text-gray-300 hover:text-white p-2 transition-colors"
+                aria-label="Close modal"
+              >
+                <X size={24} />
+              </button>
+              {
+                selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') || selectedImage.endsWith('.ogg') ? (
+                  <video
+                    src={selectedImage}
+                    className="w-full h-full object-cover rounded-lg"
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                  />
+                ) : (
+                  <img
+                    src={selectedImage}
+                    alt="Selected"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                )
+              }
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
-export default ProjectCard
+export default ProjectCard;

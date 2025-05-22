@@ -12,6 +12,37 @@ const Footer = () => {
     { name: 'Contact', href: '#contact' }
   ]
 
+  const socialLinks = [
+    {
+      icon: <Github className="text-terminal-green" size={18} />,
+      href: "https://github.com/akram6t",
+      title: "github",
+      color: "terminal-green",
+      command: "clone github.com/akram6t"
+    },
+    {
+      icon: <Linkedin className="text-terminal-blue" size={18} />,
+      href: "https://linkedin.com/in/akram6t",
+      title: "linkedin",
+      color: "terminal-blue",
+      command: "connect linkedin.com/in/akram6t"
+    },
+    {
+      icon: <Twitter className="text-terminal-purple" size={18} />,
+      href: "#",
+      title: "twitter",
+      color: "terminal-purple",
+      command: "follow @username"
+    },
+    {
+      icon: <Mail className="text-terminal-red" size={18} />,
+      href: "mailto:khanakram8435@gmail.com",
+      title: "email",
+      color: "terminal-red",
+      command: "mailto khanakram8435@gmail.com"
+    }
+  ]
+
   return (
     <footer className="relative py-12 overflow-hidden border-t border-gray-800">
       {/* Background Glow Effects */}
@@ -35,7 +66,7 @@ const Footer = () => {
           >
             <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
               <Terminal size={20} className="text-terminal-green" />
-              <span className="text-xl font-mono text-terminal-green">dev</span>
+              <span className="text-xl font-mono text-terminal-green">akram</span>
               <span className="text-xl font-mono text-gray-300">@portfolio</span>
             </div>
             <p className="text-sm text-gray-400 font-mono">
@@ -62,45 +93,46 @@ const Footer = () => {
             ))}
           </motion.nav>
 
-          {/* Social Icons */}
+          {/* Social Icons - Enhanced */}
           <motion.div
-            className="flex space-x-4"
+            className="flex flex-col items-center"
             initial={{ x: 20, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <motion.a
-              href="#"
-              className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-terminal-green hover:bg-terminal-green hover:text-gray-900 transition-all duration-300"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Github size={18} />
-            </motion.a>
-            <motion.a
-              href="#"
-              className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-terminal-blue hover:bg-terminal-blue hover:text-gray-900 transition-all duration-300"
-              whileHover={{ scale: 1.1, rotate: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Linkedin size={18} />
-            </motion.a>
-            <motion.a
-              href="#"
-              className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-terminal-purple hover:bg-terminal-purple hover:text-gray-900 transition-all duration-300"
-              whileHover={{ scale: 1.1, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Twitter size={18} />
-            </motion.a>
-            <motion.a
-              href="#"
-              className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-terminal-red hover:bg-terminal-red hover:text-gray-900 transition-all duration-300"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Mail size={18} />
-            </motion.a>
+            <div className="flex space-x-4 mb-2">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group relative w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center border border-${social.color} hover:bg-${social.color} hover:text-gray-900 transition-all duration-300`}
+                  whileHover={{ 
+                    y: -3,
+                    scale: 1.1,
+                    rotate: index % 2 === 0 ? 5 : -5
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {social.icon}
+                  <span className={`absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-mono text-${social.color} opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap`}>
+                    {social.title}
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+            <div className="hidden group-hover:block text-xs text-gray-500 font-mono mt-1">
+              {/* Command will appear when any icon is hovered */}
+              {socialLinks.map((social, index) => (
+                <span 
+                  key={index}
+                  className={`group-hover/${index}:inline hidden text-${social.color}`}
+                >
+                  {social.command}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
 
@@ -111,7 +143,7 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <p>© {currentYear} John Doe. All rights reserved.</p>
+          <p>© {currentYear} akram@portfolio. All rights reserved.</p>
           <p className="mt-2 text-xs text-gray-600">// Built in the terminal with love 💻</p>
         </motion.div>
       </div>
@@ -120,139 +152,3 @@ const Footer = () => {
 }
 
 export default Footer
-
-
-
-// 'use client'
-
-// import { motion } from 'framer-motion'
-// import { Github, Linkedin, Mail, Terminal, Coffee, Code2 } from 'lucide-react'
-
-// const Footer = () => {
-//   const currentYear = new Date().getFullYear()
-  
-//   const footerLinks = [
-//     {
-//       name: 'GitHub',
-//       icon: <Github size={18} />,
-//       url: '#',
-//       color: 'text-gray-300 hover:text-terminal-purple'
-//     },
-//     {
-//       name: 'LinkedIn',
-//       icon: <Linkedin size={18} />,
-//       url: '#',
-//       color: 'text-gray-300 hover:text-terminal-blue'
-//     },
-//     {
-//       name: 'Email',
-//       icon: <Mail size={18} />,
-//       url: 'mailto:john@example.com',
-//       color: 'text-gray-300 hover:text-terminal-green'
-//     }
-//   ]
-
-//   return (
-//     <footer className="relative border-t border-gray-800 bg-gray-900 bg-opacity-50 backdrop-blur-lg overflow-hidden">
-//       {/* Glowing elements */}
-//       <div className="glow-effect glow-purple w-64 h-64 -bottom-32 -left-32 opacity-30" />
-//       <div className="glow-effect glow-blue w-96 h-96 -top-64 -right-64 opacity-20" />
-      
-//       <div className="container mx-auto px-4 md:px-8 py-12">
-//         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-//           {/* Left section - Branding */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.6 }}
-//             viewport={{ once: true }}
-//             className="flex items-center gap-3"
-//           >
-//             <Terminal className="text-terminal-green" size={24} />
-//             <div className="font-mono">
-//               <span className="text-terminal-green">dev</span>
-//               <span className="text-gray-300">Portfolio</span>
-//             </div>
-//           </motion.div>
-          
-//           {/* Middle section - Navigation */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.6, delay: 0.2 }}
-//             viewport={{ once: true }}
-//             className="flex flex-wrap justify-center gap-6"
-//           >
-//             {['About', 'Skills', 'Projects', 'Contact'].map((item, index) => (
-//               <motion.a
-//                 key={index}
-//                 href={`#${item.toLowerCase()}`}
-//                 className="text-gray-400 hover:text-terminal-green font-mono text-sm transition-colors"
-//                 whileHover={{ y: -2 }}
-//               >
-//                 {item}
-//               </motion.a>
-//             ))}
-//           </motion.div>
-          
-//           {/* Right section - Social links */}
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.6, delay: 0.4 }}
-//             viewport={{ once: true }}
-//             className="flex gap-4"
-//           >
-//             {footerLinks.map((link, index) => (
-//               <motion.a
-//                 key={index}
-//                 href={link.url}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className={`${link.color} transition-colors`}
-//                 whileHover={{ y: -3, scale: 1.1 }}
-//                 whileTap={{ scale: 0.9 }}
-//               >
-//                 {link.icon}
-//               </motion.a>
-//             ))}
-//           </motion.div>
-//         </div>
-        
-//         {/* Bottom section - Copyright */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6, delay: 0.6 }}
-//           viewport={{ once: true }}
-//           className="mt-12 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4"
-//         >
-//           <div className="text-gray-500 text-sm font-mono flex items-center gap-2">
-//             <Code2 size={16} className="text-terminal-green" />
-//             <span>Built with Next.js, Tailwind CSS and Framer Motion</span>
-//           </div>
-          
-//           <div className="text-gray-500 text-sm font-mono flex items-center gap-2">
-//             <Coffee size={16} className="text-terminal-purple" />
-//             <span>© {currentYear} John Doe. All rights reserved.</span>
-//           </div>
-//         </motion.div>
-        
-//         {/* Easter egg - Build command */}
-//         <motion.div
-//           initial={{ opacity: 0 }}
-//           whileInView={{ opacity: 1 }}
-//           transition={{ duration: 0.6, delay: 0.8 }}
-//           viewport={{ once: true }}
-//           className="mt-6 text-center"
-//         >
-//           <p className="text-gray-600 text-xs font-mono">
-//             $ npm run build && npm start
-//           </p>
-//         </motion.div>
-//       </div>
-//     </footer>
-//   )
-// }
-
-// export default Footer

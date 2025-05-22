@@ -7,8 +7,11 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Developer Portfolio',
-  description: 'Professional portfolio of a frontend developer',
+  title: 'Akram | Portfolio',
+  description: 'Professional portfolio of a software engineer specializing in web development, showcasing projects, skills, and contact information.',
+  icons: {
+    icon: 'https://s3.tebi.io/portfolio/IMG20240531184412_1747911922553_Edited%281%29.jpg'
+  }
 }
 
 export default function RootLayout({

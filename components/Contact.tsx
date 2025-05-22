@@ -5,41 +5,80 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Linkedin, Github, Terminal, Send, Code2, Cpu, Database } from 'lucide-react'
 
 const Contact = () => {
-  const [formStatus, setFormStatus] = useState<string | null>(null)
+  const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('success')
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      const data = await response.json()
+      
+      if (data.success) {
+        setFormStatus('success')
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+      } else {
+        setFormStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setFormStatus('error')
+    } finally {
       setIsSubmitting(false)
       setTimeout(() => setFormStatus(null), 3000)
-    }, 1500)
+    }
   }
   
   const contactInfo = [
     {
       icon: <Mail className="text-terminal-green" size={20} />,
       title: 'email',
-      value: 'john@example.com',
-      link: 'mailto:john@example.com',
-      command: 'mailto john@example.com'
+      value: 'khanakram8435@gmail.com',
+      link: 'mailto:khanakram8435@gmail.com',
+      command: 'mailto khanakram8435@gmail.com'
     },
     {
       icon: <Linkedin className="text-terminal-blue" size={20} />,
       title: 'linkedin',
-      value: '/in/johndoe',
-      link: '#',
-      command: 'connect linkedin.com/in/johndoe'
+      value: '/in/akram6t',
+      link: 'https://www.linkedin.com/in/akram6t',
+      command: 'connect linkedin.com/in/akram6t'
     },
     {
       icon: <Github className="text-terminal-purple" size={20} />,
       title: 'github',
-      value: '/johndoe',
-      link: '#',
-      command: 'clone github.com/johndoe'
+      value: '/akram6t',
+      link: 'https://github.com/akram6t',
+      command: 'clone github.com/akram6t'
     }
   ]
   
@@ -86,6 +125,8 @@ const Contact = () => {
                   <motion.a
                     key={index}
                     href={info.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block group"
                     whileHover={{ x: 5 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 10 }}
@@ -115,8 +156,15 @@ const Contact = () => {
                     <motion.a
                       key={index}
                       href={info.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center hover:border-terminal-green transition-colors duration-200"
-                      whileHover={{ y: -3, scale: 1.1 }}
+                      whileHover={{ 
+                        y: -3, 
+                        scale: 1.1,
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderColor: 'rgba(16, 185, 129, 0.5)'
+                      }}
                       whileTap={{ scale: 0.9 }}
                     >
                       {info.icon}
@@ -146,13 +194,24 @@ const Contact = () => {
                 <AnimatePresence>
                   {formStatus === 'success' && (
                     <motion.div 
-                      className="bg-terminal-green bg-opacity-10 border border-terminal-green text-terminal-green px-4 py-3 rounded-lg mb-6 flex items-center gap-2 font-mono text-sm"
+                      className="border-terminal-green bg-opacity-10 border border-terminal-green text-terminal-green px-4 py-3 rounded-lg mb-6 flex items-center gap-2 font-mono text-sm"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
                     >
                       <Terminal size={16} />
                       Message sent successfully! I'll get back to you soon.
+                    </motion.div>
+                  )}
+                  {formStatus === 'error' && (
+                    <motion.div 
+                      className="bg-terminal-red bg-opacity-10 border border-terminal-red text-terminal-red px-4 py-3 rounded-lg mb-6 flex items-center gap-2 font-mono text-sm"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <Terminal size={16} />
+                      Error sending message. Please try again later.
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -164,6 +223,9 @@ const Contact = () => {
                       <input 
                         type="text"
                         id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-terminal-green focus:ring-1 focus:ring-terminal-green font-mono text-sm transition-all"
                         required
                       />
@@ -173,6 +235,9 @@ const Contact = () => {
                       <input 
                         type="email"
                         id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-terminal-green focus:ring-1 focus:ring-terminal-green font-mono text-sm transition-all"
                         required
                       />
@@ -184,6 +249,9 @@ const Contact = () => {
                     <input 
                       type="text"
                       id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-terminal-green focus:ring-1 focus:ring-terminal-green font-mono text-sm transition-all"
                     />
                   </div>
@@ -192,6 +260,9 @@ const Contact = () => {
                     <label htmlFor="message" className="block text-sm text-gray-400 font-mono mb-2">// your_message</label>
                     <textarea 
                       id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-terminal-green focus:ring-1 focus:ring-terminal-green font-mono text-sm transition-all min-h-32"
                       rows={5}
                       required

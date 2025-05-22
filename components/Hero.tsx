@@ -49,83 +49,86 @@ const BinaryRain = () => {
   return <div className="binary-rain">{digits}</div>
 }
 
-const BinaryTreeVisualization = () => {
-  const nodes = [
-    { id: 1, value: 'root', left: 2, right: 3, x: 50, y: 20 },
-    { id: 2, value: 'skills', left: 4, right: 5, x: 30, y: 40 },
-    { id: 3, value: 'projects', left: 6, right: null, x: 70, y: 40 },
-    { id: 4, value: 'frontend', left: null, right: null, x: 20, y: 60 },
-    { id: 5, value: 'backend', left: null, right: null, x: 40, y: 60 },
-    { id: 6, value: 'fullstack', left: null, right: null, x: 80, y: 60 },
-  ]
+// const BinaryTreeVisualization = () => {
+//   const nodes = [
+//     { id: 1, value: 'root', left: 2, right: 3, x: 50, y: 20 },
+//     { id: 2, value: 'skills', left: 4, right: 5, x: 30, y: 40 },
+//     { id: 3, value: 'projects', left: 6, right: null, x: 70, y: 40 },
+//     { id: 4, value: 'frontend', left: null, right: null, x: 20, y: 60 },
+//     { id: 5, value: 'backend', left: null, right: null, x: 40, y: 60 },
+//     { id: 6, value: 'fullstack', left: null, right: null, x: 80, y: 60 },
+//   ]
 
-  const lines = nodes.reduce((acc, node) => {
-    if (node.left) {
-      const leftNode = nodes.find(n => n.id === node.left)
-      if (leftNode) {
-        acc.push({
-          id: `${node.id}-${leftNode.id}`,
-          x1: node.x,
-          y1: node.y,
-          x2: leftNode.x,
-          y2: leftNode.y,
-          length: Math.sqrt(Math.pow(leftNode.x - node.x, 2) + Math.pow(leftNode.y - node.y, 2)),
-          angle: Math.atan2(leftNode.y - node.y, leftNode.x - node.x) * 180 / Math.PI
-        })
-      }
-    }
-    if (node.right) {
-      const rightNode = nodes.find(n => n.id === node.right)
-      if (rightNode) {
-        acc.push({
-          id: `${node.id}-${rightNode.id}`,
-          x1: node.x,
-          y1: node.y,
-          x2: rightNode.x,
-          y2: rightNode.y,
-          length: Math.sqrt(Math.pow(rightNode.x - node.x, 2) + Math.pow(rightNode.y - node.y, 2)),
-          angle: Math.atan2(rightNode.y - node.y, rightNode.x - node.x) * 180 / Math.PI
-        })
-      }
-    }
-    return acc
-  }, [] as any[])
+//   const lines = nodes.reduce((acc, node) => {
+//     if (node.left) {
+//       const leftNode = nodes.find(n => n.id === node.left)
+//       if (leftNode) {
+//         acc.push({
+//           id: `${node.id}-${leftNode.id}`,
+//           x1: node.x,
+//           y1: node.y,
+//           x2: leftNode.x,
+//           y2: leftNode.y,
+//           length: Math.sqrt(Math.pow(leftNode.x - node.x, 2) + Math.pow(leftNode.y - node.y, 2)),
+//           angle: Math.atan2(leftNode.y - node.y, leftNode.x - node.x) * 180 / Math.PI
+//         })
+//       }
+//     }
+//     if (node.right) {
+//       const rightNode = nodes.find(n => n.id === node.right)
+//       if (rightNode) {
+//         acc.push({
+//           id: `${node.id}-${rightNode.id}`,
+//           x1: node.x,
+//           y1: node.y,
+//           x2: rightNode.x,
+//           y2: rightNode.y,
+//           length: Math.sqrt(Math.pow(rightNode.x - node.x, 2) + Math.pow(rightNode.y - node.y, 2)),
+//           angle: Math.atan2(rightNode.y - node.y, rightNode.x - node.x) * 180 / Math.PI
+//         })
+//       }
+//     }
+//     return acc
+//   }, [] as any[])
 
-  return (
-    <div className="relative w-full h-64 md:h-96">
-      {lines.map(line => (
-        <div
-          key={line.id}
-          className="binary-tree-line"
-          style={{
-            left: `${line.x1}%`,
-            top: `${line.y1}%`,
-            width: `${line.length}%`,
-            transform: `rotate(${line.angle}deg)`
-          }}
-        />
-      ))}
-      {nodes.map(node => (
-        <div
-          key={node.id}
-          className="binary-tree-node"
-          style={{
-            left: `${node.x}%`,
-            top: `${node.y}%`,
-          }}
-        >
-          <span className="text-xs">{node.value}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
+//   return (
+//     <div className="relative w-full h-64 md:h-96">
+//       {lines.map(line => (
+//         <div
+//           key={line.id}
+//           className="binary-tree-line"
+//           style={{
+//             left: `${line.x1}%`,
+//             top: `${line.y1}%`,
+//             width: `${line.length}%`,
+//             transform: `rotate(${line.angle}deg)`
+//           }}
+//         />
+//       ))}
+//       {nodes.map(node => (
+//         <div
+//           key={node.id}
+//           className="binary-tree-node"
+//           style={{
+//             left: `${node.x}%`,
+//             top: `${node.y}%`,
+//           }}
+//         >
+//           <span className="text-xs">{node.value}</span>
+//         </div>
+//       ))}
+//     </div>
+//   )
+// }
 
 const Hero = () => {
   const commands = [
-    'A Javascript developer',
-    'A React developer',
-    'A backend developer',
+    'A javascript developer',
+    'A react developer',
+    'A next.js developer',
+    'A node.js developer',
+    'A typeScript developer',
+    'A system designer',
   ]
   const [currentCommand, setCurrentCommand] = useState(0)
 
@@ -197,7 +200,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              &lt;FullStack <span className="text-terminal-green">Dev</span> /&gt;
+              &lt;FullStack<span className="text-terminal-green">Developer</span> /&gt;
             </motion.h2>
             
             <motion.p 
@@ -207,8 +210,8 @@ const Hero = () => {
               transition={{ delay: 0.5 }}
             >
               I architect digital experiences with clean code and modern tech stacks. 
-              Specializing in <span className="text-terminal-blue">React</span>, <span className="text-terminal-purple">Next.js</span>, 
-              and <span className="text-terminal-green">TypeScript</span> ecosystems.
+              Specializing in <span className="text-terminal-blue">Nodejs</span>, <span className="text-terminal-purple">React</span>, 
+              and <span className="text-terminal-green">React-native</span> ecosystems.
             </motion.p>
             
             <motion.div 
@@ -218,13 +221,13 @@ const Hero = () => {
               transition={{ delay: 0.6 }}
             >
               <motion.a 
-                href="/resume.pdf" 
+                href="https://s3.tebi.io/portfolio/akram_cv.pdf" 
                 target='_blank'
                 className="px-6 py-3 bg-terminal-green text-gray-900 rounded-lg font-medium flex items-center gap-2 hover:bg-terminal-blue transition-all duration-300 font-mono"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Terminal size={18} /> Resume.pdf
+                <Terminal size={18} /> resume.pdf
               </motion.a>
               <motion.a 
                 href="#contact" 

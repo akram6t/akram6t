@@ -34,7 +34,7 @@ const About = () => {
           </h2>
           <div className="w-24 h-1 bg-terminal-green mx-auto rounded-full mb-6" />
           <p className="text-gray-300 max-w-2xl mx-auto font-mono">
-            $ whoami // Full-stack developer passionate about building digital experiences
+            $ whoami // Full-stack javascript/typescript developer passionate about building digital experiences
           </p>
         </motion.div>
         
@@ -63,7 +63,7 @@ const About = () => {
               </div>
               
               <img 
-                src="https://avatars.githubusercontent.com/u/91476267?s=400&u=e0130001a369dcb7fd4e9eff484a2ab7b45121af&v=4" 
+                src="https://s3.tebi.io/portfolio/IMG20240531184412_1747911922553_Edited%281%29.jpg" 
                 alt="Developer Portrait" 
                 className="w-full h-auto rounded-lg border border-gray-800 mix-blend-lighten opacity-90" 
               />
@@ -132,11 +132,11 @@ const About = () => {
                 
                 <div className="space-y-4 text-gray-300">
                   <p>
-                    I'm a <span className="text-terminal-green">full-stack developer</span> with over 5 years of experience building web applications. My journey in tech started when I built my first website at 15, and I've been obsessed with creating digital experiences ever since.
+                    I'm a <span className="text-terminal-green">full-stack developer</span> building web applications. My journey in tech started from 2021, and I've been obsessed with creating digital experiences ever since.
                   </p>
                   
                   <p>
-                    I specialize in the <span className="text-terminal-blue">JavaScript ecosystem</span>, particularly <span className="text-terminal-purple">React</span>, <span className="text-terminal-blue">Next.js</span>, and <span className="text-terminal-green">Node.js</span>. I'm passionate about building performant, accessible, and visually appealing applications.
+                    I specialize in the <span className="text-terminal-blue">JavaScript ecosystem</span>, particularly <span className="text-terminal-purple">React</span>, <span className="text-terminal-blue">Next.js</span>, and <span className="text-terminal-green">Node.js</span>. I'm passionate about building scalable, performant, accessible, and visually appealing applications.
                   </p>
                   
                   <div className="terminal-card p-4 my-4">
@@ -145,12 +145,12 @@ const About = () => {
                       <h4 className="font-mono text-sm text-terminal-green">$ currentFocus</h4>
                     </div>
                     <p className="text-sm">
-                      Currently diving deeper into <span className="text-terminal-purple">Web3 technologies</span> and <span className="text-terminal-blue">serverless architectures</span>. Always learning and exploring new parts of the stack.
+                      Currently diving deeper into <span className="text-terminal-purple">system designing</span> and <span className="text-terminal-blue">cloud computing</span>. Always learning and exploring new parts of the stack.
                     </p>
                   </div>
                   
                   <p>
-                    When I'm not coding, you'll find me contributing to <span className="text-terminal-green">open source</span>, writing technical articles, or experimenting with new frameworks. I believe in the power of technology to solve real-world problems.
+                    When I'm not coding, you'll find me experimenting with new frameworks, cloud services to how to build a sass at very cheap cost and make into highly scalable. I believe in the power of technology to solve real-world problems.
                   </p>
                 </div>
                 

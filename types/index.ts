@@ -6,6 +6,7 @@ export interface Project {
     technologies: string[];
     live: string;
     github: string;
+    createdAt: string;
   }
   
   export interface ExperienceItem {

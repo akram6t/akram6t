@@ -57,7 +57,7 @@ const Navbar = () => {
           transition={{ type: 'spring', stiffness: 300, damping: 10 }}
         >
           <Terminal className="text-terminal-green" />
-          <span className="text-terminal-green">dev</span>
+          <span className="text-terminal-green">akram</span>
           <span className="text-gray-300">@portfolio</span>
         </motion.a>
         
