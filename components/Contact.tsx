@@ -120,7 +120,7 @@ const Contact = () => {
                 <div className="text-xs text-gray-400 ml-2">contact_info.sh</div>
               </div>
               
-              <div className="p-4 space-y-6">
+              <div className="p-1 space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.a
                     key={index}

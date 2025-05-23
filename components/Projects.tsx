@@ -21,8 +21,7 @@ const Projects = () => {
         'https://s3.tebi.io/portfolio/deployr/diagram.png',
         'https://s3.tebi.io/portfolio/deployr/one.png',
         'https://s3.tebi.io/portfolio/deployr/two.png',
-        'https://s3.tebi.io/portfolio/deployr/three.png',
-        'https://s3.tebi.io/portfolio/deployr/video.mp4'
+        'https://s3.tebi.io/portfolio/deployr/three.png'
       ],
       technologies: ['Nodejs', 'Next.js', 'Postgresql', 'Docker', 'Redis', 'Next-UI', 'Tailwindcss', 'Cloud storage', 'Cloud run jobs', 'Pubsub', 'Bigquery', 'Cloud cdn'],
       live: '',

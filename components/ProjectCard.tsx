@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Maximize2, X } from 'lucide-react'
 import type { Project } from '@/types'
@@ -15,6 +15,20 @@ const colors = ["terminal-blue", "terminal-purple", "terminal-green"];
 
 const Slider = ({ images, primaryColor, onImageClick }: SliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile)
+    }
+  }, [])
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
@@ -34,8 +48,20 @@ const Slider = ({ images, primaryColor, onImageClick }: SliderProps) => {
           <div className="terminal-btn terminal-btn-green" />
           <div className="text-xs text-gray-400 ml-2 font-mono">preview.png</div>
         </div>
-        <div className="text-xs text-gray-400 font-mono">
-          {currentIndex + 1}/{images.length}
+        <div className="flex items-center gap-2">
+          <div className="text-xs text-gray-400 font-mono">
+            {currentIndex + 1}/{images.length}
+          </div>
+          {/* Moved the view button to the header for mobile */}
+          {isMobile && (
+            <button
+              onClick={() => onImageClick(currentIndex)}
+              className={`bg-gray-900 bg-opacity-70 text-${primaryColor} p-1.5 rounded hover:bg-opacity-90 transition z-10`}
+              aria-label="View full image"
+            >
+              <Maximize2 size={16} />
+            </button>
+          )}
         </div>
       </div>
 
@@ -67,14 +93,16 @@ const Slider = ({ images, primaryColor, onImageClick }: SliderProps) => {
                   />
                 )
               }
-              {/* View button */}
-              <button
-                onClick={() => onImageClick(index)}
-                className={`absolute top-12 right-2 bg-gray-900 bg-opacity-70 text-${primaryColor} p-1.5 rounded hover:bg-opacity-90 transition z-10`}
-                aria-label="View full image"
-              >
-                <Maximize2 size={16} />
-              </button>
+              {/* View button - only shown on desktop */}
+              {!isMobile && (
+                <button
+                  onClick={() => onImageClick(index)}
+                  className={`absolute top-12 right-2 bg-gray-900 bg-opacity-70 text-${primaryColor} p-1.5 rounded hover:bg-opacity-90 transition z-10`}
+                  aria-label="View full image"
+                >
+                  <Maximize2 size={16} />
+                </button>
+              )}
             </div>
           )
         })}
@@ -124,7 +152,21 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
   const projectColor = colors[index % colors.length]
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile)
+    }
+  }, [])
 
   const openImageModal = (image: string) => {
     setSelectedImage(image)
@@ -209,7 +251,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             onClick={closeImageModal}
           >
             <motion.div
-              className="relative max-w-4xl w-full max-h-[90vh]"
+              className={`relative ${isMobile ? 'w-full h-full' : 'max-w-4xl w-full max-h-[90vh]'}`}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -226,7 +268,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 selectedImage.endsWith('.mp4') || selectedImage.endsWith('.webm') || selectedImage.endsWith('.ogg') ? (
                   <video
                     src={selectedImage}
-                    className="w-full h-full object-cover rounded-lg"
+                    className={`${isMobile ? 'w-full h-full' : 'w-full h-full object-cover'} rounded-lg`}
                     controls
                     autoPlay
                     loop
@@ -236,7 +278,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                   <img
                     src={selectedImage}
                     alt="Selected"
-                    className="w-full h-full object-cover rounded-lg"
+                    className={`${isMobile ? 'w-full h-full object-contain' : 'w-full h-full object-cover'} rounded-lg`}
                   />
                 )
               }
@@ -248,4 +290,4 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   )
 }
 
-export default ProjectCard;
+export default ProjectCard

@@ -221,7 +221,7 @@ const Hero = () => {
               transition={{ delay: 0.6 }}
             >
               <motion.a 
-                href="https://s3.tebi.io/portfolio/akram_cv.pdf" 
+                href="/resume_23_may_2025.pdf"
                 target='_blank'
                 className="px-6 py-3 bg-terminal-green text-gray-900 rounded-lg font-medium flex items-center gap-2 hover:bg-terminal-blue transition-all duration-300 font-mono"
                 whileHover={{ scale: 1.05 }}
