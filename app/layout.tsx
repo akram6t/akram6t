@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: 'Akram | Portfolio',
   description: 'Professional portfolio of a software engineer specializing in web development, showcasing projects, skills, and contact information.',
   icons: {
-    icon: 'https://s3.tebi.io/portfolio/IMG20240531184412_1747911922553_Edited%281%29.jpg'
-  }
+    icon: '/akram_1.png',
+  },
 }
 
 export default function RootLayout({
@@ -21,6 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/akram_1.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/akram_1.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/akram_1.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />
+      </head>
       <body className={inter.className}>
         <div className="min-h-screen">
           <Navbar />
