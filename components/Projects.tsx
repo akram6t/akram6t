@@ -26,7 +26,7 @@ const Projects = () => {
       ],
       technologies: ['Nodejs', 'Next.js', 'Postgresql', 'Docker', 'Redis', 'Next-UI', 'Tailwindcss', 'Cloud storage', 'Cloud run jobs', 'Pubsub', 'Bigquery', 'Cloud cdn'],
       live: '',
-      github: 'https://github.com/akram6t/vercel-clone',
+      github: 'https://github.com/akram6t/deployr',
       category: 'fullstack',
       createdAt: '2025-04-20'
     },
