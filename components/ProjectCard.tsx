@@ -259,7 +259,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             >
               <button
                 onClick={closeImageModal}
-                className="absolute -top-10 right-0 text-gray-300 hover:text-white p-2 transition-colors"
+                className="absolute -top-30 right-0 text-gray-300 hover:text-white p-2 transition-colors"
                 aria-label="Close modal"
               >
                 <X size={24} />
