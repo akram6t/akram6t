@@ -21,7 +21,6 @@ const Skills = () => {
       skills: [
         { name: 'Node.js', level: 85 },
         { name: 'Express', level: 80 },
-        { name: 'GraphQL', level: 75 },
         { name: 'REST APIs', level: 88 }
       ]
     },
@@ -39,7 +38,7 @@ const Skills = () => {
       name: 'Mobile',
       icon: <Smartphone className="text-terminal-yellow" />,
       skills: [
-        { name: 'React Native', level: 80 },
+        { name: 'React Native', level: 60 },
       ]
     },
     {
@@ -55,16 +54,16 @@ const Skills = () => {
       name: 'Other',
       icon: <GitBranch className="text-terminal-cyan" />,
       skills: [
-        { name: 'Git', level: 90 },
-        { name: 'Chatgpt', level: 90 }
+        { name: 'Git', level: 80 },
+        { name: 'AI tools', level: 90 }
       ]
     }
   ]
 
   const techstacks = [
     'JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Express', 'React Native', 
-    'GraphQL', 'Tailwindcss','MongoDB', 'PostgreSQL', 'Firebase', 'Redis','Git', 'Docker', 
-    'Google cloud', 'Vercel', 'Cloudflare','Chatgpt', 'deepseek', 'claude ai'
+    'Tailwindcss','MongoDB', 'PostgreSQL', 'Firebase', 'Redis','Git', 'Docker', 
+    'Google cloud', 'Vercel', 'Cloudflare','Chatgpt', 'deepseek'
   ]
 
   return (
