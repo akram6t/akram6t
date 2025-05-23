@@ -1,10 +1,6 @@
 <h1 align="center">Hi 👋, I'm Akram Khan</h1>
 <h3 align="center">A passionate Fullstack JavaScript Developer from India</h3>
 
-<p align="center">
-  <img src="https://s3.tebi.io/portfolio/profile.jpg" alt="akram6t" width="300" />
-</p>
-
 - 🌱 I'm currently diving deeper into **system designing and cloud computing**
 - 👨‍💻 All of my projects are available at [akram6t.vercel.app](https://akram6t.vercel.app)
 - 💬 Ask me about **React, Node.js, MongoDB, or JavaScript ecosystem**
