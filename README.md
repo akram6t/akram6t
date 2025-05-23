@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">Hi 👋, I'm Akram Khan</h1>
+<h3 align="center">A passionate Fullstack JavaScript Developer from India</h3>
 
-## Getting Started
+<p align="center">
+  <img src="https://s3.tebi.io/portfolio/profile.jpg" alt="akram6t" width="300" />
+</p>
 
-First, run the development server:
+- 🌱 I'm currently diving deeper into **system designing and cloud computing**
+- 👨‍💻 All of my projects are available at [akram6t.vercel.app](https://akram6t.vercel.app)
+- 💬 Ask me about **React, Node.js, MongoDB, or JavaScript ecosystem**
+- 📫 How to reach me: [LinkedIn](https://linkedin.com/in/akram6t)
+- ⚡ Fun fact: I use AI tools to accelerate development and improve productivity
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### My Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Frontend:**  
+React, Next.js, TypeScript, Tailwind CSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Backend:**  
+Node.js, Express.js, REST APIs
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Database:**  
+MongoDB, PostgreSQL, Redis, Firebase
 
-## Learn More
+**Mobile:**  
+React Native
 
-To learn more about Next.js, take a look at the following resources:
+**DevOps & Tools:**  
+Docker, Google Cloud, Linux, Git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Featured Projects
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔗 **Deployr - Scale Up Your App**  
+A highly scalable alternative to Vercel/Netlify for deploying applications  
+[GitHub](https://github.com/akram6t/deployr)
 
-## Deploy on Vercel
+👕 **Laundry Management System**  
+Full-stack solution with admin dashboard and mobile app (MERN + React Native)  
+[GitHub](https://github.com/akram6t/laundry-app)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Education
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎓 **Master's in Computer Application**  
+SAGE University, Indore (2023-2025)
+
+🎓 **Bachelor's in Computer Science**  
+LBS College, Harda (2021-2023)
+
+### Connect With Me
+
+<p align="left">
+  <a href="https://linkedin.com/in/akram6t" target="blank">
+    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="akram6t" height="30" width="40" />
+  </a>
+  <a href="https://github.com/akram6t" target="blank">
+    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="akram6t" height="30" width="40" />
+  </a>
+  <a href="https://akram6t.vercel.app" target="blank">
+    <img align="center" src="https://raw.githubusercontent.com/iconic/open-iconic/master/svg/globe.svg" alt="portfolio" height="30" width="40" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=akram6t&show_icons=true&locale=en&layout=compact" alt="akram6t" />
+</p>
