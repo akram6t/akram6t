@@ -198,6 +198,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             </span>
           </div>
           <p className="text-gray-300 mb-4 font-mono text-sm">{project.description}</p>
+
+                {/* Overlay for the entire slider */}
+      <span className='hr-only bg-terminal-green'></span>
+      <span className='hr-only bg-terminal-blue'></span>
+      <span className='hr-only bg-terminal-purple'></span>
+          
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies.map((tech, techIndex) => (
               <motion.span
