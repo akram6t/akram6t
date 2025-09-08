@@ -63,7 +63,7 @@ const About = () => {
               </div>
               
               <img 
-                src="https://s3.tebi.io/portfolio/IMG20240531184412_1747911922553_Edited%281%29.jpg" 
+                src="https://s3.tebi.io/portfolio/nose_slim_profile.png" 
                 alt="Developer Portrait" 
                 className="w-full h-auto rounded-lg border border-gray-800 mix-blend-lighten opacity-90" 
               />
