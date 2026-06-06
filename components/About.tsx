@@ -63,7 +63,7 @@ const About = () => {
               </div>
               
               <img 
-                src="./akram_1.png" 
+                src="./akram__.png" 
                 alt="Developer Portrait" 
                 className="w-full h-auto rounded-lg border border-gray-800 mix-blend-lighten opacity-90" 
               />
