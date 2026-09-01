@@ -13,7 +13,7 @@
 React, Next.js, TypeScript, Tailwind CSS
 
 **Backend:**  
-Node.js, Express.js, REST APIs
+Spring boot, Node.js, Express.js, REST APIs
 
 **Database:**  
 MongoDB, PostgreSQL, Redis, Firebase
