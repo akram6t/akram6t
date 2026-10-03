@@ -45,10 +45,10 @@ Full-stack solution with admin dashboard and mobile app (MERN + React Native)
 🎓 **Cdac Certified: **
   Cdac sunbeam pune-karad 2026
 
-🎓 **Master's in Computer Application: **:
+🎓 **Master's in Computer Application: **
   SAGE University, Indore (2023-2025)
 
-🎓 **Bachelor's in Computer Science: **: 
+🎓 **Bachelor's in Computer Science: **
   LBS College, Harda (2021-2023)
 
 ### Connect With Me
