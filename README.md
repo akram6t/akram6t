@@ -3,7 +3,7 @@
 
 - 🌱 I'm currently diving deeper into **system designing and cloud computing**
 - 👨‍💻 All of my projects are available at [akram6t.vercel.app](https://akram6t.vercel.app)
-- 💬 Ask me about **React, Node.js, MongoDB, or JavaScript ecosystem**
+- 💬 Ask me about **Spring boot, React, Node.js, MongoDB, Postgresql or JavaScript ecosystem**
 - 📫 How to reach me: [LinkedIn](https://linkedin.com/in/akram6t)
 - ⚡ Fun fact: I use AI tools to accelerate development and improve productivity
 
@@ -30,13 +30,22 @@ Docker, Google Cloud, Linux, Git
 A highly scalable alternative to Vercel/Netlify for deploying applications  
 [GitHub](https://github.com/akram6t/deployr)
 
-👕 **Laundry Management System**  
+👕 **Live Cricket auction management**
+Full-stack live cricket auction management web app in microservice artitecture
+we used dotnet, nodejs, springboot, react etc services.
+[GitHub](https://github.com/akram6t/auctxi-fullstack)
+[Preview](https://auctxi.online)
+
+👕 **Laundry Management System**
 Full-stack solution with admin dashboard and mobile app (MERN + React Native)  
 [GitHub](https://github.com/akram6t/laundry-app)
 
 ### Education
 
-🎓 **Master's in Computer Application**  
+🎓 **Cdac Certified**
+Cdac sunbeam pune-karad 2026
+
+🎓 **Master's in Computer Application**
 SAGE University, Indore (2023-2025)
 
 🎓 **Bachelor's in Computer Science**  
