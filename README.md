@@ -30,7 +30,7 @@ Docker, Google Cloud, Linux, Git
 A highly scalable alternative to Vercel/Netlify for deploying applications  
 [GitHub](https://github.com/akram6t/deployr)
 
-👕 **Live Cricket auction management**
+⚽ **Live Cricket auction management**
 Full-stack live cricket auction management web app in microservice artitecture
 we used dotnet, nodejs, springboot, react etc services.
 [GitHub](https://github.com/akram6t/auctxi-fullstack)
